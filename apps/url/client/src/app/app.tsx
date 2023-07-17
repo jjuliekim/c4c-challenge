@@ -4,7 +4,7 @@ import styles from './app.module.css';
 import NxWelcome from './nx-welcome';
 import React, { FormEvent, useCallback, useState } from 'react';
 import axios from "axios";
-import {Button, Container, Input, Text} from "@chakra-ui/react";
+import {Box, Button, Container, Input, ListItem, Text, UnorderedList} from "@chakra-ui/react";
 import { StrictMode } from 'react';
 import * as ReactDOM from 'react-dom/client';
 import { ChakraProvider } from '@chakra-ui/react';
@@ -45,12 +45,16 @@ export function App() {
   );
 
   return (
-    <Container textAlign={"center"} backgroundColor={"blue.50"}>
-      <Text fontSize={"4xl"}>URL Shortener</Text>
+    <Box textAlign={"center"}>
+      <Text fontSize={"4xl"} marginBlock={4} color={"blue.800"}>
+        URL Shortener
+      </Text>
       <form onSubmit={onSubmit}>
-        <Text>Enter URL</Text>
+        <Text marginBottom={5} fontSize={"lg"}>
+          Enter URL
+        </Text>
         <Input
-          marginBlock={10}
+          bg={"blue.50"}
           value={inputUrl}
           onChange={(e) => {
             setInputUrl(e.target.value);
@@ -58,19 +62,19 @@ export function App() {
           placeholder="www.long-url-here.com"
         />
         <Text></Text>
-        <Button type="submit">
+        <Button type="submit" marginBlock={10}>
           Generate Link
         </Button>
       </form>
 
-      <ul>
+      <UnorderedList textAlign={"left"}>
         {urls.map((u) => (
-          <li>
+          <ListItem>
             {u.short} -- {u.original}
-          </li>
+          </ListItem>
         ))}
-      </ul>
-    </Container>
+      </UnorderedList>
+    </Box>
   );
 }
 
